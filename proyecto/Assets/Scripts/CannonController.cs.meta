@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: a3a1c639bd7988e41bcb05e6344fb72c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - cannonYaw: {instanceID: 0}
+  - cannonPitch: {instanceID: 0}
+  - projectileSpawn: {instanceID: 0}
+  - projectilePrefab: {instanceID: 0}
+  - shootSound: {fileID: 8300000, guid: f6d10d7da70856f47aa1f08052a07101, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
