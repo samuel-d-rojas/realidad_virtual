@@ -1,0 +1,10 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:Button text="Menu" style="font-size: 40px; width: 248px; top: 53px; left: 38px; background-color: rgb(16, 43, 146); color: rgb(255, 255, 255); border-top-left-radius: 10px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-top-right-radius: 10px;"/>
+        <ui:Label text="Tutoriales" style="font-size: 44px; width: 1664px; left: 121px; top: 76px; background-color: rgb(255, 255, 255); border-top-left-radius: 13px; border-bottom-left-radius: 13px; border-bottom-right-radius: 13px; border-top-right-radius: 13px;"/>
+        <ui:Label text="Movimiento" style="font-size: 49px; top: 111px; left: 137px; width: 1638px; background-color: rgb(146, 138, 138); height: 676px; color: rgb(255, 255, 255);">
+            <ui:Label text="Mis primeros movimientos" style="top: 104px; font-size: 43px; width: 1606px; background-color: rgb(0, 0, 0); color: rgb(255, 255, 255); border-top-left-radius: 25px; border-bottom-left-radius: 25px; border-bottom-right-radius: 25px; border-top-right-radius: 25px; left: 8px;"/>
+            <ui:Toggle label="Completado" style="top: 42px; width: 356px; font-size: 34px; left: 1318px;"/>
+        </ui:Label>
+    </ui:VisualElement>
+</ui:UXML>
