@@ -1,0 +1,151 @@
+/* Menú FlexStrike: misma distribución y colores del diseño original
+   (azul principal, menta secundarios, turquesa para niveles). */
+
+.pantalla {
+    width: 100%;
+    height: 100%;
+}
+
+.fondo {
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+    background-color: rgb(14, 24, 48);
+    -unity-background-scale-mode: scale-and-crop;
+}
+
+/* Botón base */
+.boton {
+    border-width: 0;
+    border-radius: 16px;
+    margin: 0;
+    transition-property: scale, background-color;
+    transition-duration: 0.12s;
+}
+
+.boton:hover {
+    scale: 1.04 1.04;
+}
+
+.boton:active {
+    scale: 0.96 0.96;
+}
+
+/* Salir: azul, arriba a la izquierda */
+.salir {
+    position: absolute;
+    left: 40px;
+    top: 36px;
+    width: 180px;
+    height: 56px;
+    font-size: 26px;
+    color: white;
+    background-color: rgb(16, 78, 214);
+}
+
+.salir:hover {
+    background-color: rgb(40, 104, 235);
+}
+
+/* Título */
+.titulo {
+    position: absolute;
+    left: 0; right: 0;
+    top: 7%;
+    font-size: 104px;
+    color: white;
+    -unity-text-align: middle-center;
+}
+
+/* Cuerpo: tres columnas */
+.cuerpo {
+    position: absolute;
+    left: 0; right: 0;
+    top: 31%;
+    height: 32%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+}
+
+.columna {
+    width: 22%;
+    align-items: center;
+}
+
+.columna-centro {
+    margin-top: 50px;
+}
+
+/* Menta: Tutoriales, Ajustes, Perfil */
+.menta {
+    width: 270px;
+    height: 66px;
+    font-size: 30px;
+    color: rgb(28, 52, 46);
+    background-color: rgb(168, 213, 200);
+}
+
+.menta:hover {
+    background-color: rgb(190, 230, 218);
+}
+
+.espacio {
+    margin-bottom: 100px;
+}
+
+/* Iniciar juego: azul grande */
+.jugar {
+    width: 520px;
+    height: 140px;
+    font-size: 52px;
+    color: white;
+    background-color: rgb(10, 96, 220);
+    border-radius: 20px;
+}
+
+.jugar:hover {
+    background-color: rgb(36, 124, 244);
+}
+
+/* Paciente */
+.paciente {
+    font-size: 40px;
+    color: white;
+    -unity-text-align: middle-center;
+    margin-bottom: 80px;
+}
+
+/* Niveles: turquesa, abajo */
+.niveles {
+    position: absolute;
+    left: 0; right: 0;
+    top: 70%;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 5%;
+}
+
+.nivel-caja {
+    width: 22%;
+    align-items: center;
+}
+
+.nivel {
+    width: 300px;
+    height: 92px;
+    font-size: 42px;
+    color: rgb(8, 48, 58);
+    background-color: rgb(124, 200, 212);
+    border-width: 4px;
+    border-color: rgba(255, 255, 255, 0);
+}
+
+.nivel:hover {
+    background-color: rgb(150, 220, 232);
+}
+
+/* Nivel seleccionado */
+.nivel-activo {
+    border-color: white;
+}
