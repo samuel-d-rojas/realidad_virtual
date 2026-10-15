@@ -1,0 +1,8 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:Button text="Menu" name="BotonMenu" style="font-size: 35px; width: 230px; color: rgb(255, 255, 255); background-color: rgb(35, 90, 212); left: 29px; top: 35px; border-top-left-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px;"/>
+        <ui:Label text="Nivel 1: Esta misión &#10;consiste en ...." style="font-size: 39px; width: 385px; background-color: rgb(218, 218, 218); left: 1449px; top: 794px;"/>
+        <ui:Label text="X8" style="font-size: 184px; width: 226px; left: 1238px; top: 160px;"/>
+        <ui:Label text="Combo&#10;72" style="font-size: 60px; width: 282px; background-color: rgb(218, 218, 218); left: 257px; top: 20px; -unity-text-align: upper-center; height: 146px;"/>
+    </ui:VisualElement>
+</ui:UXML>
