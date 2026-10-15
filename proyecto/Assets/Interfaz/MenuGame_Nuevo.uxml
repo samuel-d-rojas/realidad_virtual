@@ -1,0 +1,38 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="EstiloMenu.uss" />
+    <ui:VisualElement name="Raiz" class="pantalla">
+        <ui:VisualElement name="Fondo" class="fondo" picking-mode="Ignore" />
+
+        <ui:Button text="Salir" name="Salir" class="boton salir" />
+
+        <ui:Label text="FlexStrike" name="Titulo" class="titulo" />
+
+        <ui:VisualElement name="Cuerpo" class="cuerpo">
+            <ui:VisualElement name="ColumnaIzquierda" class="columna">
+                <ui:Button text="Tutoriales" name="Ir_Tutorial" class="boton menta espacio" />
+                <ui:Button text="Ajustes" name="Ir_Ajustes" class="boton menta" />
+            </ui:VisualElement>
+
+            <ui:VisualElement name="ColumnaCentro" class="columna columna-centro">
+                <ui:Button text="Iniciar Juego" name="Ir_Juego" class="boton jugar" />
+            </ui:VisualElement>
+
+            <ui:VisualElement name="ColumnaDerecha" class="columna">
+                <ui:Label text="Paciente 001" name="NombrePaciente" class="paciente" />
+                <ui:Button text="Perfil e historial" name="BotonPerfil" class="boton menta" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="Niveles" class="niveles">
+            <ui:VisualElement class="nivel-caja">
+                <ui:Button text="Nivel 1" name="BotonNivel1" class="boton nivel nivel-activo" />
+            </ui:VisualElement>
+            <ui:VisualElement class="nivel-caja">
+                <ui:Button text="Nivel 2" name="BotonNivel2" class="boton nivel" />
+            </ui:VisualElement>
+            <ui:VisualElement class="nivel-caja">
+                <ui:Button text="Nivel 3" name="BotonNivel3" class="boton nivel" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
