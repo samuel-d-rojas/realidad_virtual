@@ -1,23 +1,24 @@
-/* Estilo compartido FlexStrike VR: indigo profundo + coral de esfuerzo */
+/* Estilo compartido: Login, Juego, Tutoriales y Ajustes.
+   Misma paleta que el menú (EstiloMenu.uss): azul, menta y turquesa sobre azul noche.
+   Referencia de diseño: 1920x1080. */
 
 :root {
-    --fondo: rgb(20, 12, 42);
-    --panel: rgba(38, 24, 72, 0.92);
-    --campo: rgb(26, 16, 52);
-    --borde: rgb(84, 62, 140);
-    --texto: rgb(243, 238, 255);
-    --texto-suave: rgb(168, 155, 204);
-    --acento: rgb(255, 107, 87);
-    --acento-hover: rgb(255, 135, 115);
-    --violeta: rgb(124, 92, 255);
+    --fondo: rgb(14, 24, 48);
+    --panel: rgba(22, 38, 70, 0.94);
+    --panel-suave: rgba(255, 255, 255, 0.07);
+    --borde: rgb(52, 84, 132);
+    --texto: rgb(255, 255, 255);
+    --texto-suave: rgb(170, 190, 222);
+    --azul: rgb(10, 96, 220);
+    --azul-hover: rgb(36, 124, 244);
+    --azul-volver: rgb(16, 78, 214);
+    --menta: rgb(168, 213, 200);
+    --turquesa: rgb(124, 200, 212);
+    --tinta: rgb(28, 52, 46);
 }
 
-.pantalla {
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-}
+/* ---------- Base ---------- */
+.pantalla { width: 100%; height: 100%; align-items: center; justify-content: center; }
 
 .fondo {
     position: absolute;
@@ -29,129 +30,211 @@
 .velo {
     position: absolute;
     left: 0; top: 0; right: 0; bottom: 0;
-    background-color: rgba(20, 12, 42, 0.55);
+    background-color: rgba(14, 24, 48, 0.45);
 }
 
+.boton {
+    height: 56px;
+    font-size: 26px;
+    color: var(--texto);
+    background-color: var(--azul);
+    border-width: 0;
+    border-radius: 16px;
+    margin: 0;
+    transition-property: scale, background-color;
+    transition-duration: 0.12s;
+}
+.boton:hover { background-color: var(--azul-hover); scale: 1.04 1.04; }
+.boton:active { scale: 0.96 0.96; }
+
+.boton-principal { height: 64px; font-size: 28px; margin-top: 8px; margin-bottom: 14px; }
+
+.boton-suave {
+    height: 52px;
+    font-size: 22px;
+    color: var(--tinta);
+    background-color: var(--menta);
+}
+.boton-suave:hover { background-color: rgb(190, 230, 218); }
+
+.boton-volver { width: 180px; background-color: var(--azul-volver); }
+
+/* ---------- Cabecera y contenido (Tutoriales, Ajustes) ---------- */
+.cabecera {
+    position: absolute;
+    left: 40px; right: 40px; top: 30px;
+    height: 72px;
+    flex-direction: row;
+    align-items: center;
+}
+.titulo-pantalla {
+    font-size: 56px;
+    color: var(--texto);
+    margin-left: 36px;
+    flex-grow: 1;
+}
+.contenido {
+    position: absolute;
+    left: 40px; right: 40px; top: 130px; bottom: 40px;
+}
+
+/* ---------- Login ---------- */
 .tarjeta {
-    width: 460px;
-    padding: 40px 44px 36px 44px;
+    width: 585px;
+    padding: 44px 40px 36px 40px;
     background-color: var(--panel);
     border-radius: 28px;
     border-width: 2px;
     border-color: var(--borde);
 }
-
-.titulo {
-    font-size: 44px;
-    -unity-font-style: bold;
-    color: var(--texto);
-    -unity-text-align: middle-center;
-    letter-spacing: 3px;
-}
-
-.titulo-vr {
-    color: var(--acento);
-}
-
-.subtitulo {
-    font-size: 16px;
-    color: var(--texto-suave);
-    -unity-text-align: middle-center;
-    margin-top: 6px;
-    margin-bottom: 30px;
-}
-
-.etiqueta {
-    font-size: 15px;
-    color: var(--texto-suave);
-    margin-bottom: 6px;
-    margin-left: 4px;
-}
-
-/* Campos de texto */
-.campo {
-    margin-bottom: 18px;
-}
-
+.titulo { margin-bottom: 36px; font-size: 46px; color: var(--texto); -unity-text-align: middle-center; letter-spacing: 3px; }
+.subtitulo { font-size: 18px; color: var(--texto-suave); -unity-text-align: middle-center; margin-top: 6px; margin-bottom: 30px; }
+.etiqueta { font-size: 17px; color: var(--texto-suave); margin-bottom: 6px; margin-left: 4px; }
+.campo { flex-direction: row; align-items: center; margin: 0 0 22px 0; }
+.campo .unity-base-field__label { min-width: 150px; width: 150px; font-size: 26px; color: var(--texto-suave); }
 .campo .unity-base-text-field__input {
-    background-color: var(--campo);
+    flex-grow: 1;
+    background-color: rgb(14, 24, 48);
     color: var(--texto);
-    font-size: 18px;
-    height: 52px;
+    font-size: 20px;
+    height: 54px;
     padding-left: 16px;
     border-radius: 14px;
     border-width: 2px;
     border-color: var(--borde);
 }
+.campo:focus .unity-base-text-field__input { border-color: var(--turquesa); }
+.fila { flex-direction: row; }
+.fila .boton { flex-grow: 1; flex-basis: 0; }
+.fila .boton:first-child { margin-right: 10px; }
+.boton-centro { width: 300px; align-self: center; }
 
-.campo:focus .unity-base-text-field__input {
-    border-color: var(--violeta);
-}
+.divisor { flex-direction: row; align-items: center; margin: 6px 0 18px 0; }
+.divisor-linea { flex-grow: 1; height: 2px; background-color: var(--borde); }
+.divisor-texto { font-size: 26px; color: var(--texto-suave); margin: 0 20px; }
 
-/* Botones */
-.boton {
-    height: 54px;
-    font-size: 20px;
-    -unity-font-style: bold;
-    color: var(--texto);
-    background-color: var(--violeta);
-    border-radius: 27px;
-    border-width: 0;
-    margin: 0 0 12px 0;
-    transition-property: scale, background-color;
-    transition-duration: 0.12s;
-}
+.aviso { font-size: 16px; color: var(--turquesa); -unity-text-align: middle-center; min-height: 20px; margin-bottom: 4px; }
 
-.boton:hover {
-    background-color: rgb(146, 118, 255);
-    scale: 1.03 1.03;
-}
+/* ---------- Tutoriales ---------- */
+.lista { flex-grow: 1; }
 
-.boton:active {
-    scale: 0.97 0.97;
-}
-
-.boton-principal {
-    background-color: var(--acento);
-    color: rgb(40, 12, 8);
-    margin-top: 8px;
-}
-
-.boton-principal:hover {
-    background-color: var(--acento-hover);
-}
-
-.boton-suave {
-    background-color: rgba(124, 92, 255, 0.18);
+.tarjeta-tutorial {
+    background-color: var(--panel);
+    border-radius: 24px;
     border-width: 2px;
     border-color: var(--borde);
+    padding: 32px 40px 36px 40px;
+    margin-bottom: 24px;
+}
+.tarjeta-cabecera { flex-direction: row; align-items: center; justify-content: space-between; }
+.tarjeta-titulo { font-size: 52px; color: var(--texto); }
+.tarjeta-subtitulo {
+    margin-top: 22px;
+    padding: 22px 32px;
+    font-size: 38px;
     color: var(--texto);
-    height: 46px;
-    font-size: 17px;
+    background-color: var(--panel-suave);
+    border-radius: 20px;
 }
 
-.boton-suave:hover {
-    background-color: rgba(124, 92, 255, 0.38);
+/* ---------- Ajustes ---------- */
+.pestanas { flex-direction: row; margin-bottom: 28px; }
+.pestana {
+    width: 310px;
+    height: 70px;
+    font-size: 32px;
+    margin-right: 20px;
+    border-radius: 35px;
+    color: var(--texto-suave);
+    background-color: var(--panel);
+    border-width: 2px;
+    border-color: var(--borde);
 }
+.pestana:hover { color: var(--texto); border-color: var(--turquesa); }
+.pestana-activa { color: var(--texto); background-color: var(--azul); border-color: var(--azul); }
+.pestana-activa:hover { background-color: var(--azul-hover); border-color: var(--azul-hover); }
 
-.fila {
+.panel-ajustes {
+    background-color: var(--panel);
+    border-radius: 28px;
+    border-width: 2px;
+    border-color: var(--borde);
+    padding: 24px 32px 10px 32px;
+}
+.fila-ajuste {
+    height: 104px;
     flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    margin-bottom: 14px;
+    background-color: var(--panel-suave);
+    border-radius: 24px;
+}
+.fila-ajuste-nombre { font-size: 42px; color: var(--texto); }
+
+/* Slider */
+.slider-ajuste { width: 520px; }
+.slider-ajuste .unity-base-slider__drag-container { height: 48px; justify-content: center; }
+.slider-ajuste .unity-base-slider__tracker {
+    height: 10px;
+    border-width: 0;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.22);
+}
+.slider-ajuste .unity-base-slider__dragger {
+    width: 38px; height: 38px;
+    border-radius: 19px;
+    border-width: 0;
+    background-color: var(--turquesa);
 }
 
-.fila .boton {
-    flex-grow: 1;
-    flex-basis: 0;
+/* Interruptor */
+.interruptor .unity-base-field__label,
+.interruptor .unity-toggle__text { min-width: 0; font-size: 38px; color: var(--texto); margin-right: 18px; }
+.interruptor .unity-toggle__checkmark {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    border-width: 2px;
+    border-color: var(--turquesa);
+    background-color: rgba(255, 255, 255, 0.10);
+}
+.interruptor .unity-toggle__input:checked > .unity-toggle__checkmark { background-color: var(--turquesa); }
+
+/* ---------- HUD de Juego (sobre el mundo 3D, sin fondo) ---------- */
+.hud-combo {
+    position: absolute;
+    left: 260px; top: 28px;
+    width: 250px;
+    padding: 12px 0 14px 0;
+    align-items: center;
+    background-color: rgba(14, 24, 48, 0.78);
+    border-radius: 22px;
+    border-width: 2px;
+    border-color: var(--turquesa);
+}
+.hud-combo-etiqueta { font-size: 26px; color: var(--turquesa); letter-spacing: 4px; }
+.hud-combo-valor { font-size: 76px; color: var(--texto); -unity-font-style: bold; }
+
+.hud-multiplicador {
+    position: absolute;
+    right: 90px; top: 130px;
+    font-size: 170px;
+    color: var(--texto);
+    -unity-font-style: bold;
+    -unity-text-outline-width: 4px;
+    -unity-text-outline-color: rgb(14, 24, 48);
 }
 
-.fila .boton:first-child {
-    margin-right: 10px;
+.hud-mision {
+    position: absolute;
+    right: 60px; bottom: 60px;
+    width: 500px;
+    padding: 24px 30px 28px 30px;
+    background-color: rgba(14, 24, 48, 0.82);
+    border-radius: 24px;
+    border-width: 2px;
+    border-color: var(--borde);
 }
-
-/* Mensaje de error o aviso (oculto hasta que lo uses) */
-.aviso {
-    font-size: 15px;
-    color: var(--acento-hover);
-    -unity-text-align: middle-center;
-    min-height: 20px;
-    margin-bottom: 4px;
-}
+.hud-mision-nivel { font-size: 34px; color: var(--turquesa); margin-bottom: 8px; }
+.hud-mision-texto { font-size: 32px; color: var(--texto); white-space: normal; }

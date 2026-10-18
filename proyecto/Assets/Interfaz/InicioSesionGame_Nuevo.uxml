@@ -1,0 +1,29 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="Estilo.uss" />
+    <ui:VisualElement name="Raiz" class="pantalla">
+
+        <!-- Tu imagen de fondo original -->
+        <ui:VisualElement name="Fondo" class="fondo" picking-mode="Ignore" style="background-image: url(&quot;project://database/Assets/Interfaz/Images/imagenFondo.jpg?fileID=2800000&amp;guid=a5620144211f6f248a3b81deecfca3fc&amp;type=3#imagenFondo&quot;);" />
+
+        <ui:VisualElement name="Tarjeta" class="tarjeta">
+            <ui:Label text="FLEX STRIKE VR" name="Titulo" class="titulo" />
+
+            <ui:TextField label="Usuario" placeholder-text="Tu usuario" name="TextFieldUsua" class="campo" />
+            <ui:TextField label="Contraseña" placeholder-text="Tu contraseña" password="true" name="TextFieldContra" class="campo" />
+
+            <ui:Button text="Iniciar Sesión" name="Entrar" class="boton boton-principal boton-centro" />
+
+            <ui:VisualElement name="Divisor" class="divisor">
+                <ui:VisualElement class="divisor-linea" />
+                <ui:Label text="O" name="O" class="divisor-texto" />
+                <ui:VisualElement class="divisor-linea" />
+            </ui:VisualElement>
+
+            <ui:VisualElement name="OtrasOpciones" class="fila">
+                <ui:Button text="Sesión de invitado" name="Ir_Menu" class="boton boton-suave" />
+                <ui:Button text="Crear Cuenta" name="Ir_Menu" class="boton boton-suave" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+</ui:UXML>

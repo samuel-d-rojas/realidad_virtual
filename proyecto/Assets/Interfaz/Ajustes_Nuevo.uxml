@@ -1,0 +1,44 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="Estilo.uss" />
+    <ui:VisualElement name="Raiz" class="pantalla">
+        <ui:VisualElement name="Fondo" class="fondo" picking-mode="Ignore" />
+
+        <ui:VisualElement name="Cabecera" class="cabecera">
+            <ui:Button text="Menu" name="Ir_Menu" class="boton boton-volver" />
+            <ui:Label text="Ajustes" name="Titulo" class="titulo-pantalla" />
+        </ui:VisualElement>
+
+        <ui:VisualElement name="Contenido" class="contenido">
+
+            <ui:VisualElement name="Pestanas" class="pestanas">
+                <ui:Button text="Gráficos/Vídeo" name="GraficosVidBoton" class="boton pestana pestana-activa" />
+                <ui:Button text="Audio" name="AudioBoton" class="boton pestana" />
+                <ui:Button text="Controles" name="ControlesBoton" class="boton pestana" />
+                <ui:Button text="Accesibilidad" name="AccesBoton" class="boton pestana" />
+            </ui:VisualElement>
+
+            <ui:VisualElement name="PanelGraficos" class="panel-ajustes">
+                <ui:VisualElement name="FilaResolucion" class="fila-ajuste">
+                    <ui:Label text="Resolución" class="fila-ajuste-nombre" />
+                    <ui:Toggle label="Bajos" name="ToggleBajos" class="interruptor" />
+                </ui:VisualElement>
+
+                <ui:VisualElement name="FilaBrillo" class="fila-ajuste">
+                    <ui:Label text="Brillo" class="fila-ajuste-nombre" />
+                    <ui:Slider label="" value="42" high-value="100" name="BrilloSlider" class="slider-ajuste" />
+                </ui:VisualElement>
+
+                <ui:VisualElement name="FilaContraste" class="fila-ajuste">
+                    <ui:Label text="Contraste" class="fila-ajuste-nombre" />
+                    <ui:Slider label="" value="42" high-value="100" name="ContrasSlider" class="slider-ajuste" />
+                </ui:VisualElement>
+
+                <ui:VisualElement name="FilaGamma" class="fila-ajuste">
+                    <ui:Label text="Gamma" class="fila-ajuste-nombre" />
+                    <ui:Slider label="" value="42" high-value="100" name="GammaSlider" class="slider-ajuste" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

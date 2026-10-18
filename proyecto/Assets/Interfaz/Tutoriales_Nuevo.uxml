@@ -1,0 +1,25 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="Estilo.uss" />
+    <ui:VisualElement name="Raiz" class="pantalla">
+        <ui:VisualElement name="Fondo" class="fondo" picking-mode="Ignore" />
+
+        <ui:VisualElement name="Cabecera" class="cabecera">
+            <ui:Button text="Menu" name="Ir_Menu" class="boton boton-volver" />
+            <ui:Label text="Tutoriales" name="Titulo" class="titulo-pantalla" />
+        </ui:VisualElement>
+
+        <ui:VisualElement name="Contenido" class="contenido">
+            <ui:ScrollView name="ListaTutoriales" class="lista">
+
+                <ui:VisualElement name="TutorialMovimiento" class="tarjeta-tutorial">
+                    <ui:VisualElement class="tarjeta-cabecera">
+                        <ui:Label text="Movimiento" name="TutorialTitulo" class="tarjeta-titulo" />
+                        <ui:Toggle label="Completado" name="ToggleCompletado" class="interruptor" />
+                    </ui:VisualElement>
+                    <ui:Label text="Mis primeros movimientos" name="TutorialDescripcion" class="tarjeta-subtitulo" />
+                </ui:VisualElement>
+
+            </ui:ScrollView>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

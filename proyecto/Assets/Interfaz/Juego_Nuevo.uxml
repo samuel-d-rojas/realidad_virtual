@@ -1,0 +1,15 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Interfaz/Estilo.uss?fileID=7433441132597879392&amp;guid=54aacb5870ca1dd47b1917d60e1e83a0&amp;type=3#Estilo"/>
+    <ui:VisualElement name="Raiz" picking-mode="Ignore" class="pantalla">
+        <ui:Button text="Menu" name="Ir_Menu" class="boton boton-volver" style="position: absolute; left: 40px; top: 36px;"/>
+        <ui:VisualElement name="Combo" picking-mode="Ignore" class="hud-combo" style="top: 275px; left: 234px;">
+            <ui:Label text="COMBO" name="ComboEtiqueta" class="hud-combo-etiqueta"/>
+            <ui:Label text="72" name="ComboValor" class="hud-combo-valor"/>
+        </ui:VisualElement>
+        <ui:Label text="X8" name="Multiplicador" picking-mode="Ignore" class="hud-multiplicador" style="top: 351px; right: 182px;"/>
+        <ui:VisualElement name="Mision" picking-mode="Ignore" class="hud-mision">
+            <ui:Label text="Nivel 1" name="MisionNivel" class="hud-mision-nivel"/>
+            <ui:Label text="Esta misión consiste en ...." name="MisionTexto" class="hud-mision-texto"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
