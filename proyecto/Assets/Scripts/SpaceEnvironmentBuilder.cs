@@ -15,7 +15,7 @@ public class SpaceEnvironmentBuilder : MonoBehaviour
         RemoveTerrestrialScene();
         CreateSpaceLight();
         CreateStarFields();
-        CreateNebulae();
+        //CreateNebulae();
         CreateSpeedStreaks();
         CreateDistantBodies();
     }
@@ -25,14 +25,26 @@ public class SpaceEnvironmentBuilder : MonoBehaviour
         Camera cam = Camera.main;
         if (cam == null) return;
 
-        cam.clearFlags = CameraClearFlags.SolidColor;
-        cam.backgroundColor = new Color(0.005f, 0.008f, 0.035f);
         cam.farClipPlane = 500f;
-        RenderSettings.fog = true;
-        RenderSettings.fogMode = FogMode.Linear;
-        RenderSettings.fogColor = new Color(0.008f, 0.012f, 0.050f);
-        RenderSettings.fogStartDistance = 35f;
-        RenderSettings.fogEndDistance = 150f;
+
+        // Si la escena tiene un skybox (Window > Rendering > Lighting > Environment) se muestra ese fondo
+        // y no se pone niebla; si no, se usa el color oscuro con niebla.
+        if (RenderSettings.skybox != null)
+        {
+            cam.clearFlags = CameraClearFlags.Skybox;
+            RenderSettings.fog = false;
+        }
+        else
+        {
+            cam.clearFlags = CameraClearFlags.SolidColor;
+            cam.backgroundColor = new Color(0.005f, 0.008f, 0.035f);
+            RenderSettings.fog = true;
+            RenderSettings.fogMode = FogMode.Linear;
+            RenderSettings.fogColor = new Color(0.008f, 0.012f, 0.050f);
+            RenderSettings.fogStartDistance = 35f;
+            RenderSettings.fogEndDistance = 150f;
+        }
+
         RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Trilight;
         RenderSettings.ambientSkyColor = new Color(0.12f, 0.16f, 0.32f);
         RenderSettings.ambientEquatorColor = new Color(0.06f, 0.08f, 0.14f);
