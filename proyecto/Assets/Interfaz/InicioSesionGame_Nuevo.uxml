@@ -20,8 +20,8 @@
             </ui:VisualElement>
 
             <ui:VisualElement name="OtrasOpciones" class="fila">
-                <ui:Button text="Sesión de invitado" name="Ir_Menu" class="boton boton-suave" />
-                <ui:Button text="Crear Cuenta" name="Ir_Menu" class="boton boton-suave" />
+                <ui:Button text="Sesión de invitado" name="BotonInvitado" class="boton boton-suave" />
+                <ui:Button text="Crear Cuenta" name="BotonCrearCuenta" class="boton boton-suave" />
             </ui:VisualElement>
         </ui:VisualElement>
 
