@@ -30,6 +30,9 @@ public class UIManager : MonoBehaviour
             { "Ajustes", ajustes }, { "Tutorial", tutorial }
         };
 
+        if (mundoJuego == null)
+            Debug.LogError("UIManager: falta asignar 'Mundo Juego' en el Inspector. Sin él no aparecen los meteoritos ni el espacio.");
+
         if (mundoJuego != null && mundoJuego.GetComponentInChildren<AsteroidSpawner>(true) == null)
             mundoJuego.AddComponent<AsteroidSpawner>();
         if (mundoJuego != null && mundoJuego.GetComponent<SpaceEnvironmentBuilder>() == null)
