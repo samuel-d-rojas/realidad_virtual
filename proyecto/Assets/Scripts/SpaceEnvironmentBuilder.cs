@@ -17,7 +17,7 @@ public class SpaceEnvironmentBuilder : MonoBehaviour
         CreateStarFields();
         //CreateNebulae();
         CreateSpeedStreaks();
-        CreateDistantBodies();
+        //CreateDistantBodies();
     }
 
     private void PrepareSpaceCamera()
