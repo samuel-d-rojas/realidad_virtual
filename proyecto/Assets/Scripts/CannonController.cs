@@ -25,6 +25,15 @@ public class CannonController : MonoBehaviour
 
     public AudioClip shootSound;
 
+    [Header("Modelo de la nave (Maya)")]
+    [Tooltip("Arrastra aquí Nave.fbx. Si queda vacío se usa la nave hecha con primitivas.")]
+    public GameObject modeloNave;
+    public string nombreArmaPrincipal = "ArmaPrincipal";
+    [Tooltip("Lado más largo de la nave en metros de Unity.")]
+    public float tamanoNave = 3.5f;
+    [Tooltip("Activado: la nave queda fija y solo gira el arma principal. Desactivado: gira toda la nave.")]
+    public bool soloGiraArmaPrincipal = true;
+
     [Header("Conexión ESP32")]
     public string serialPortName = "COM6";
     public bool intentarPuertosAutomaticamente = true;
@@ -84,6 +93,12 @@ public class CannonController : MonoBehaviour
                 renderer.enabled = false;
         }
 
+        if (modeloNave != null)
+        {
+            CrearNaveDesdeModelo();
+            return;
+        }
+
         Transform shipParent = cannonPitch != null ? cannonPitch : cannonYaw != null ? cannonYaw : transform;
         GameObject ship = new GameObject("NaveEspacial");
         ship.transform.SetParent(shipParent, false);
@@ -119,6 +134,89 @@ public class CannonController : MonoBehaviour
         navLight.range = 6f;
         navLight.intensity = 1.4f;
         navLight.transform.localPosition = new Vector3(0f, 0.25f, 0.8f);
+    }
+
+    void CrearNaveDesdeModelo()
+    {
+        // Con el arma giratoria la nave cuelga de la base (fija); si no, cuelga del pitch y gira entera como antes.
+        Transform baseNave = cannonYaw != null && cannonYaw.parent != null ? cannonYaw.parent : transform;
+        bool armaGiratoria = soloGiraArmaPrincipal;
+        Transform shipParent = armaGiratoria ? baseNave : cannonPitch != null ? cannonPitch : cannonYaw != null ? cannonYaw : transform;
+
+        GameObject ship = new GameObject("NaveEspacial");
+        ship.transform.SetParent(shipParent, false);
+        ship.transform.localPosition = armaGiratoria && cannonYaw != null ? cannonYaw.localPosition : Vector3.zero;
+
+        GameObject modelo = Instantiate(modeloNave, ship.transform, false);
+        modelo.name = "ModeloNave";
+        foreach (Collider collider in modelo.GetComponentsInChildren<Collider>())
+            Destroy(collider);
+        ModeloUtil.Encajar(modelo.transform, tamanoNave);
+
+        Transform arma = ModeloUtil.BuscarHijo(modelo.transform, nombreArmaPrincipal);
+        Renderer[] piezasArma = arma != null ? arma.GetComponentsInChildren<Renderer>() : new Renderer[0];
+
+        if (piezasArma.Length == 0)
+        {
+            Debug.LogWarning("[FlexStrike] No se encontró '" + nombreArmaPrincipal + "' en el modelo de la nave. " +
+                             "Se dispara desde el frente de la nave y gira la nave completa.");
+            ship.transform.SetParent(cannonPitch != null ? cannonPitch : cannonYaw != null ? cannonYaw : transform, false);
+            ship.transform.localPosition = Vector3.zero;
+            ModeloUtil.Limites(ship.transform, modelo.GetComponentsInChildren<Renderer>(), out Bounds naveLimites);
+            projectileSpawn = CrearPuntoDisparo(ship.transform,
+                ship.transform.TransformPoint(new Vector3(naveLimites.center.x, naveLimites.center.y, naveLimites.max.z + 0.1f)));
+            return;
+        }
+
+        // La pieza más atrasada del arma es la base de la torreta (pivote del giro);
+        // la que llega más adelante es el cañón, y su punta es la salida del proyectil.
+        Bounds limitesBase = new Bounds(Vector3.zero, Vector3.zero);
+        Bounds limitesCanon = new Bounds(Vector3.zero, Vector3.zero);
+        float centroMasAtras = float.MaxValue;
+        float puntaMasAdelante = float.MinValue;
+        foreach (Renderer pieza in piezasArma)
+        {
+            ModeloUtil.Limites(ship.transform, new[] { pieza }, out Bounds b);
+            if (b.center.z < centroMasAtras) { centroMasAtras = b.center.z; limitesBase = b; }
+            if (b.max.z > puntaMasAdelante) { puntaMasAdelante = b.max.z; limitesCanon = b; }
+        }
+        Vector3 puntaCanon = ship.transform.TransformPoint(
+            new Vector3(limitesCanon.center.x, limitesCanon.center.y, limitesCanon.max.z + 0.05f));
+
+        if (armaGiratoria)
+        {
+            Transform pivoteYaw = new GameObject("PivoteArmaYaw").transform;
+            pivoteYaw.SetParent(ship.transform, false);
+            pivoteYaw.localPosition = limitesBase.center;
+            Transform pivotePitch = new GameObject("PivoteArmaPitch").transform;
+            pivotePitch.SetParent(pivoteYaw, false);
+            arma.SetParent(pivotePitch, true);
+
+            cannonYaw = pivoteYaw;
+            cannonPitch = pivotePitch;
+            projectileSpawn = CrearPuntoDisparo(pivotePitch, puntaCanon);
+        }
+        else
+        {
+            projectileSpawn = CrearPuntoDisparo(ship.transform, puntaCanon);
+        }
+
+        Light navLight = new GameObject("LuzNave").AddComponent<Light>();
+        navLight.transform.SetParent(ship.transform, false);
+        navLight.type = LightType.Point;
+        navLight.color = new Color(0.15f, 0.65f, 1f);
+        navLight.range = tamanoNave * 2f;
+        navLight.intensity = 1.4f;
+        navLight.transform.localPosition = new Vector3(0f, tamanoNave * 0.4f, 0f);
+    }
+
+    private Transform CrearPuntoDisparo(Transform padre, Vector3 posicionMundo)
+    {
+        Transform spawn = new GameObject("ProjectileSpawn_Nave").transform;
+        spawn.SetParent(padre, false);
+        spawn.position = posicionMundo;
+        spawn.localRotation = Quaternion.identity;
+        return spawn;
     }
 
     private GameObject CreateShipPrimitive(string name, Transform parent, PrimitiveType primitive, Material material,

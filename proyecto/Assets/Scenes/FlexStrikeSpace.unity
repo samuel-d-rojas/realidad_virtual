@@ -530,6 +530,10 @@ MonoBehaviour:
   minPitch: -40
   maxPitch: 10
   shootSound: {fileID: 8300000, guid: f6d10d7da70856f47aa1f08052a07101, type: 3}
+  modeloNave: {fileID: 919132149155446097, guid: ff61dc8f1a3392b4a878e0e8d1ecb74c, type: 3}
+  nombreArmaPrincipal: ArmaPrincipal
+  tamanoNave: 3.5
+  soloGiraArmaPrincipal: 1
   serialPortName: COM6
   intentarPuertosAutomaticamente: 1
   baudRate: 115200
@@ -701,13 +705,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 769426096}
+  - component: {fileID: 769426097}
   m_Layer: 0
   m_Name: MundoJuego
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &769426096
 Transform:
   m_ObjectHideFlags: 0
@@ -726,6 +731,26 @@ Transform:
   - {fileID: 832575519}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &769426097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769426095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c4011545bcd0c041a80a95d192e1ad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AsteroidSpawner
+  areaMin: {x: -7, y: 1.5, z: 14}
+  areaMax: {x: 7, y: 7, z: 22}
+  intervaloInicial: 2.8
+  intervaloMinimo: 1.8
+  maximoAsteroides: 6
+  velocidadMinima: 0.65
+  velocidadMaxima: 1.35
+  modeloMeteorito: {fileID: 919132149155446097, guid: a57f1aca0419ccb4fbac5d9c72a4b874, type: 3}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,9 @@ public class AsteroidSpawner : MonoBehaviour
     public float velocidadMinima = 0.65f;
     public float velocidadMaxima = 1.35f;
 
+    [Tooltip("Arrastra aquí Metorito.fbx. Si queda vacío se usan esferas.")]
+    public GameObject modeloMeteorito;
+
     private readonly List<Asteroid> asteroides = new List<Asteroid>();
     private float siguienteAsteroide;
     private float intervalo;
@@ -65,8 +68,24 @@ public class AsteroidSpawner : MonoBehaviour
             Random.Range(areaMin.y, areaMax.y),
             Random.Range(areaMin.z, areaMax.z));
 
-        GameObject asteroide = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        asteroide.name = "AsteroideEspacial";
+        GameObject asteroide;
+        if (modeloMeteorito != null)
+        {
+            // El modelo se centra y se lleva a 1 unidad dentro de un contenedor; el contenedor tiene el collider.
+            asteroide = new GameObject("AsteroideEspacial");
+            GameObject modelo = Instantiate(modeloMeteorito, asteroide.transform, false);
+            foreach (Collider colliderModelo in modelo.GetComponentsInChildren<Collider>())
+                Destroy(colliderModelo);
+            ModeloUtil.Encajar(modelo.transform, 1f);
+            asteroide.AddComponent<SphereCollider>().radius = 0.5f;
+            asteroide.transform.rotation = Random.rotation;
+        }
+        else
+        {
+            asteroide = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            asteroide.name = "AsteroideEspacial";
+        }
+
         asteroide.transform.position = posicion;
         float tamano = Random.Range(0.55f, 1.85f);
         asteroide.transform.localScale = new Vector3(
@@ -75,7 +94,7 @@ public class AsteroidSpawner : MonoBehaviour
             tamano * Random.Range(0.78f, 1.18f));
 
         Renderer renderer = asteroide.GetComponent<Renderer>();
-        if (renderer != null)
+        if (modeloMeteorito == null && renderer != null)
         {
             Shader shader = Shader.Find("Universal Render Pipeline/Lit") ?? Shader.Find("Standard");
             Material material = new Material(shader);
